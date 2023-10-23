@@ -27,8 +27,6 @@ public class Controller {
 
   public static final int PERIOD_IN_MILLISECONDS = 50;
   @FXML
-  private Button restartButton;
-  @FXML
   private ToggleButton pauseToggleButton;
   @FXML
   private ToggleButton playToggleButton;
@@ -123,4 +121,8 @@ public class Controller {
     repaintBoard();
   }
 
+  public void oneStepButtonAction(ActionEvent actionEvent) {
+    this.pause();
+    updateBoard();
+  }
 }
