@@ -82,9 +82,9 @@ public class FirefighterBoard implements Board<List<ModelElement>> {
     for (Position firefighterPosition : firefighterPositions) {
       Position newFirefighterPosition = neighborClosestToFire(firefighterPosition);
       result.add(firefighterPosition);
-      result.add(newFirefighterPosition);
       firefighterNewPositions.add(newFirefighterPosition);
       extinguish(newFirefighterPosition);
+      result.add(newFirefighterPosition);
       List<Position> neighborFirePositions = neighbors(newFirefighterPosition).stream().filter(firePositions::contains).toList();
       for(Position firePosition : neighborFirePositions)
         extinguish(firePosition);

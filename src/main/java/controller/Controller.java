@@ -27,6 +27,10 @@ public class Controller {
 
   public static final int PERIOD_IN_MILLISECONDS = 50;
   @FXML
+  public Button restartButton;
+  @FXML
+  public Button oneStepButton;
+  @FXML
   private ToggleButton pauseToggleButton;
   @FXML
   private ToggleButton playToggleButton;
@@ -99,15 +103,15 @@ public class Controller {
     timeline.pause();
   }
 
-  public void pauseToggleButtonAction(ActionEvent actionEvent) {
+  public void pauseToggleButtonAction() {
     this.pause();
   }
 
-  public void playToggleButtonAction(ActionEvent actionEvent) {
+  public void playToggleButtonAction() {
     this.play();
   }
 
-  public void restartButtonAction(ActionEvent actionEvent) {
+  public void restartButtonAction() {
     this.pause();
     board.reset();
     pauseToggleButton.setSelected(true);
@@ -121,7 +125,7 @@ public class Controller {
     repaintBoard();
   }
 
-  public void oneStepButtonAction(ActionEvent actionEvent) {
+  public void oneStepButtonAction() {
     this.pause();
     updateBoard();
   }

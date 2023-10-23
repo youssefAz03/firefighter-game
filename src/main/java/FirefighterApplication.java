@@ -5,7 +5,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import model.FirefighterBoard;
 
 import java.io.IOException;
 import java.net.URL;
@@ -13,10 +12,10 @@ import java.net.URL;
 public class FirefighterApplication extends Application {
   private static final String VIEW_RESOURCE_PATH = "/view/view.fxml";
   private static final String APP_NAME = "Firefighter simulator";
-  private static final int ROW_COUNT = 50;
-  private static final int COLUMN_COUNT = 50;
-  private static final int SQUARE_WIDTH = 20;
-  private static final int SQUARE_HEIGHT = 20;
+  private static final int ROW_COUNT = 20;
+  private static final int COLUMN_COUNT = 20;
+  private static final int SQUARE_WIDTH = 50;
+  private static final int SQUARE_HEIGHT = 50;
   public static final int INITIAL_FIRE_COUNT = 3;
   public static final int INITIAL_FIREFIGHTER_COUNT = 6;
 
