@@ -1,0 +1,134 @@
+package model;
+
+import java.util.*;
+
+
+public class FirefighterBoard implements Board<List<ModelElement>> {
+  private final int columnCount;
+  private final int rowCount;
+  private final int initialFireCount;
+  private final int initialFirefighterCount;
+  List<Position> firefighterPositions;
+  Set<Position> firePositions;
+  List<Position> firefighterNewPositions;
+  int step = 0;
+
+  public FirefighterBoard(int columnCount, int rowCount, int initialFireCount, int initialFirefighterCount) {
+    this.columnCount = columnCount;
+    this.rowCount = rowCount;
+    this.initialFireCount = initialFireCount;
+    this.initialFirefighterCount = initialFirefighterCount;
+    initializeElements();
+  }
+
+  public void initializeElements() {
+    firefighterPositions = new ArrayList<>();
+    firePositions = new HashSet<>();
+    for (int index = 0; index < initialFireCount; index++)
+      firePositions.add(randomPosition());
+    for (int index = 0; index < initialFirefighterCount; index++)
+      firefighterPositions.add(randomPosition());
+  }
+
+  private Position randomPosition() {
+    return new Position((int) (Math.random() * rowCount), (int) (Math.random() * columnCount));
+  }
+
+  @Override
+  public List<ModelElement> getState(Position position) {
+    List<ModelElement> result = new ArrayList<>();
+    for(Position firefighterPosition : firefighterPositions)
+      if (firefighterPosition.equals(position))
+        result.add(ModelElement.FIREFIGHTER);
+    if(firePositions.contains(position))
+      result.add(ModelElement.FIRE);
+    return result;
+  }
+
+  @Override
+  public int rowCount() {
+    return rowCount;
+  }
+
+  @Override
+  public int columnCount() {
+    return columnCount;
+  }
+
+  public List<Position> updateToNextGeneration() {
+    List<Position> result = activateFirefighters();
+    result.addAll(activateFires());
+    step++;
+    return result;
+  }
+
+  private List<Position> activateFires() {
+    List<Position> result = new ArrayList<>();
+    if (step % 2 == 0) {
+      List<Position> newFirePositions = new ArrayList<>();
+      for (Position fire : firePositions) {
+        newFirePositions.addAll(neighbors(fire));
+      }
+      firePositions.addAll(newFirePositions);
+      result.addAll(newFirePositions);
+    }
+    return result;
+
+  }
+
+  private List<Position> activateFirefighters() {
+    List<Position> result = new ArrayList<>();
+    firefighterNewPositions = new ArrayList<>();
+    for (Position firefighterPosition : firefighterPositions) {
+      Position newFirefighterPosition = neighborClosestToFire(firefighterPosition);
+      result.add(firefighterPosition);
+      result.add(newFirefighterPosition);
+      firefighterNewPositions.add(newFirefighterPosition);
+      extinguish(newFirefighterPosition);
+      List<Position> neighborFirePositions = neighbors(newFirefighterPosition).stream().filter(firePositions::contains).toList();
+      for(Position firePosition : neighborFirePositions)
+        extinguish(firePosition);
+      result.addAll(firePositions);
+    }
+    firefighterPositions = firefighterNewPositions;
+    return result;
+  }
+
+  @Override
+  public void reset() {
+    initializeElements();
+  }
+
+  private void extinguish(Position position) {
+    firePositions.remove(position);
+  }
+
+  private List<Position> neighbors(Position position) {
+    List<Position> list = new ArrayList<>();
+    if (position.row() > 0) list.add(new Position(position.row() - 1, position.column()));
+    if (position.column() > 0) list.add(new Position(position.row(), position.column() - 1));
+    if (position.row() < rowCount - 1) list.add(new Position(position.row() + 1, position.column()));
+    if (position.column() < columnCount - 1) list.add(new Position(position.row(), position.column() + 1));
+    return list;
+  }
+
+  private Position neighborClosestToFire(Position position) {
+    Set<Position> seen = new HashSet<>();
+    HashMap<Position, Position> firstMove = new HashMap<>();
+    Queue<Position> toVisit = new LinkedList<>(neighbors(position));
+    for (Position initialMove : toVisit)
+      firstMove.put(initialMove, initialMove);
+    while (!toVisit.isEmpty()) {
+      Position current = toVisit.poll();
+      if (firePositions.contains(current))
+        return firstMove.get(current);
+      for (Position adjacent : neighbors(current)) {
+        if (seen.contains(adjacent)) continue;
+        toVisit.add(adjacent);
+        seen.add(adjacent);
+        firstMove.put(adjacent, firstMove.get(current));
+      }
+    }
+    return position;
+  }
+}
