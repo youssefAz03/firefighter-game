@@ -7,6 +7,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.util.Duration;
@@ -14,7 +15,7 @@ import javafx.util.Pair;
 import firefighter.model.Board;
 import firefighter.model.ModelElement;
 import firefighter.model.FirefighterBoard;
-import firefighter.model.Position;
+import firefighter.util.Position;
 import firefighter.view.FirefighterGrid;
 import firefighter.view.ViewElement;
 
@@ -30,6 +31,8 @@ public class Controller {
   public Button restartButton;
   @FXML
   public Button oneStepButton;
+  @FXML
+  public Label generationNumberLabel;
   @FXML
   private ToggleButton pauseToggleButton;
   @FXML
@@ -64,6 +67,7 @@ public class Controller {
       updatedSquares.add(new Pair<>(updatedPosition, viewElement));
     }
     grid.repaint(updatedSquares);
+    updateLabel(board.stepNumber());
   }
 
   private void repaintBoard(){
@@ -74,6 +78,7 @@ public class Controller {
       for(int row = 0; row < rowCount; row++)
         viewElements[row][column] = getViewElement(board.getState(new Position(row, column)));
     grid.repaint(viewElements);
+    updateLabel(board.stepNumber());
   }
 
   private ViewElement getViewElement(List<ModelElement> squareState) {
@@ -128,5 +133,9 @@ public class Controller {
   public void oneStepButtonAction() {
     this.pause();
     updateBoard();
+  }
+
+  private void updateLabel(int value){
+    generationNumberLabel.setText(Integer.toString(value));
   }
 }

@@ -6,10 +6,20 @@
 <?import firefighter.view.FirefighterGrid?>
 
 <?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.Label?>
 <HBox styleClass="background" stylesheets="@DarkTheme.css"
       xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
       fx:controller="firefighter.controller.Controller">
   <VBox>
+    <Separator maxHeight="-Infinity" maxWidth="-Infinity"
+               prefHeight="24.0" prefWidth="200.0"/>
+    <Label maxHeight="-Infinity" maxWidth="-Infinity" alignment="CENTER" prefHeight="24.0" prefWidth="200.0"
+           text="Generation number"/>
+    <Label fx:id="generationNumberLabel" alignment="CENTER" contentDisplay="TEXT_ONLY"
+           maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="24.0" prefWidth="200.0"/>
+    <Separator maxHeight="-Infinity" maxWidth="-Infinity"
+               prefHeight="24.0" prefWidth="200.0"/>
     <Button fx:id="restartButton" maxHeight="-Infinity" maxWidth="-Infinity"
             mnemonicParsing="false" onAction="#restartButtonAction" prefHeight="24.0" prefWidth="200.0"
             text="Restart"/>

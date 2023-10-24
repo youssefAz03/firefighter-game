@@ -3,7 +3,7 @@ package firefighter.view;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.paint.Color;
 import javafx.util.Pair;
-import firefighter.model.Position;
+import firefighter.util.Position;
 
 import java.util.List;
 

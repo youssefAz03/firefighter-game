@@ -1,5 +1,7 @@
 package firefighter.model;
 
+import firefighter.util.Position;
+
 import java.util.*;
 
 
@@ -76,6 +78,11 @@ public class FirefighterBoard implements Board<List<ModelElement>> {
 
   }
 
+  @Override
+  public int stepNumber() {
+    return step;
+  }
+
   private List<Position> activateFirefighters() {
     List<Position> result = new ArrayList<>();
     firefighterNewPositions = new ArrayList<>();
@@ -96,6 +103,7 @@ public class FirefighterBoard implements Board<List<ModelElement>> {
 
   @Override
   public void reset() {
+    step = 0;
     initializeElements();
   }
 
