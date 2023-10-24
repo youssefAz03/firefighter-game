@@ -20,6 +20,14 @@ public interface Board<S> {
   S getState(Position position);
 
   /**
+   * Set the state of a specific position on the board to the specified state.
+   *
+   * @param state The state to set for the given position.
+   * @param position The position on the board for which to set the state.
+   */
+  void setState(S state, Position position);
+
+  /**
    * Get the number of rows in the board.
    *
    * @return The number of rows in the board.

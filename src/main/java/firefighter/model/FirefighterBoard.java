@@ -140,4 +140,14 @@ public class FirefighterBoard implements Board<List<ModelElement>> {
     }
     return position;
   }
+
+  @Override
+  public void setState(List<ModelElement> state, Position position) {
+    for(ModelElement element : state){
+      switch (element){
+        case FIRE -> firePositions.add(position);
+        case FIREFIGHTER -> firefighterPositions.add(position);
+      }
+    }
+  }
 }
