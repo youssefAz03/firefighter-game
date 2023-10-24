@@ -1,4 +1,4 @@
-package model;
+package firefighter.model;
 
 import java.util.List;
 

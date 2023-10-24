@@ -1,5 +1,6 @@
-import controller.Controller;
-import javafx.application.Application;
+package firefighter.app;
+
+import firefighter.controller.Controller;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -9,8 +10,8 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
 
-public class FirefighterApplication extends Application {
-  private static final String VIEW_RESOURCE_PATH = "/view/view.fxml";
+public class SimulatorApplication extends javafx.application.Application {
+  private static final String VIEW_RESOURCE_PATH = "/firefighter/view/view.fxml";
   private static final String APP_NAME = "Firefighter simulator";
   private static final int ROW_COUNT = 20;
   private static final int COLUMN_COUNT = 20;
@@ -38,7 +39,7 @@ public class FirefighterApplication extends Application {
 
   private void initializeView() throws IOException {
     FXMLLoader loader = new FXMLLoader();
-    URL location = FirefighterApplication.class.getResource(VIEW_RESOURCE_PATH);
+    URL location = SimulatorApplication.class.getResource(VIEW_RESOURCE_PATH);
     loader.setLocation(location);
     view = loader.load();
     Controller controller = loader.getController();
@@ -50,5 +51,9 @@ public class FirefighterApplication extends Application {
     Scene scene = new Scene(view);
     primaryStage.setScene(scene);
     primaryStage.show();
+  }
+
+  public static void main(String[] args) {
+    launch(args);
   }
 }

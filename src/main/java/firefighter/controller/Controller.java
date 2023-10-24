@@ -1,4 +1,4 @@
-package controller;
+package firefighter.controller;
 
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
@@ -11,12 +11,12 @@ import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.util.Duration;
 import javafx.util.Pair;
-import model.Board;
-import model.ModelElement;
-import model.FirefighterBoard;
-import model.Position;
-import view.FirefighterGrid;
-import view.ViewElement;
+import firefighter.model.Board;
+import firefighter.model.ModelElement;
+import firefighter.model.FirefighterBoard;
+import firefighter.model.Position;
+import firefighter.view.FirefighterGrid;
+import firefighter.view.ViewElement;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -52,7 +52,7 @@ public class Controller {
   }
 
   private void setModel(FirefighterBoard firefighterBoard) {
-    this.board = requireNonNull(firefighterBoard, "model is null");
+    this.board = requireNonNull(firefighterBoard, "firefighter.model is null");
   }
 
   private void updateBoard(){

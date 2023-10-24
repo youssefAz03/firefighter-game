@@ -1,13 +1,14 @@
 
 plugins {
+    id("com.github.johnrengelman.shadow") version "8.1.1"
     id 'application'
-    id "org.openjfx.javafxplugin" version "0.0.14"
-    id 'com.github.johnrengelman.shadow' version '8.1.1'
+    id 'java'
+    id "org.openjfx.javafxplugin" version "0.1.0"
 }
 
 javafx {
     version = "21"
-    modules = [ 'javafx.controls', 'javafx.fxml' ]
+    modules = [ 'javafx.controls', 'javafx.fxml', 'javafx.graphics']
 }
 
 
@@ -29,13 +30,11 @@ test {
 }
 
 application {
-    mainClass.set("FirefighterApplication")
+    mainClass.set("firefighter.app.SimulatorMain")
 }
 
-jar {
-    manifest {
-        attributes("Implementation-Title": project.name,
-                "Implementation-Version": version,
-                "Main-Class": application.mainClass)
+tasks {
+    shadowJar {
+        exclude("module-info.class")
     }
 }
