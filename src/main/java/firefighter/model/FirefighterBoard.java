@@ -10,10 +10,10 @@ public class FirefighterBoard implements Board<List<ModelElement>> {
   private final int rowCount;
   private final int initialFireCount;
   private final int initialFirefighterCount;
-  List<Position> firefighterPositions;
-  Set<Position> firePositions;
-  List<Position> firefighterNewPositions;
-  int step = 0;
+  private List<Position> firefighterPositions;
+  private Set<Position> firePositions;
+  private int step = 0;
+  private final Random randomGenerator = new Random();
 
   public FirefighterBoard(int columnCount, int rowCount, int initialFireCount, int initialFirefighterCount) {
     this.columnCount = columnCount;
@@ -33,7 +33,7 @@ public class FirefighterBoard implements Board<List<ModelElement>> {
   }
 
   private Position randomPosition() {
-    return new Position((int) (Math.random() * rowCount), (int) (Math.random() * columnCount));
+    return new Position(randomGenerator.nextInt(rowCount), randomGenerator.nextInt(columnCount));
   }
 
   @Override
@@ -85,14 +85,15 @@ public class FirefighterBoard implements Board<List<ModelElement>> {
 
   private List<Position> activateFirefighters() {
     List<Position> result = new ArrayList<>();
-    firefighterNewPositions = new ArrayList<>();
+    List<Position> firefighterNewPositions = new ArrayList<>();
     for (Position firefighterPosition : firefighterPositions) {
       Position newFirefighterPosition = neighborClosestToFire(firefighterPosition);
-      result.add(firefighterPosition);
       firefighterNewPositions.add(newFirefighterPosition);
       extinguish(newFirefighterPosition);
+      result.add(firefighterPosition);
       result.add(newFirefighterPosition);
-      List<Position> neighborFirePositions = neighbors(newFirefighterPosition).stream().filter(firePositions::contains).toList();
+      List<Position> neighborFirePositions = neighbors(newFirefighterPosition).stream()
+              .filter(firePositions::contains).toList();
       for(Position firePosition : neighborFirePositions)
         extinguish(firePosition);
       result.addAll(neighborFirePositions);

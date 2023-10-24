@@ -67,10 +67,10 @@ public class Controller {
       updatedSquares.add(new Pair<>(updatedPosition, viewElement));
     }
     grid.repaint(updatedSquares);
-    updateLabel(board.stepNumber());
+    updateGenerationLabel(board.stepNumber());
   }
 
-  private void repaintBoard(){
+  private void repaintGrid(){
     int columnCount = board.columnCount();
     int rowCount = board.rowCount();
     ViewElement[][] viewElements = new ViewElement[rowCount][columnCount];
@@ -78,7 +78,7 @@ public class Controller {
       for(int row = 0; row < rowCount; row++)
         viewElements[row][column] = getViewElement(board.getState(new Position(row, column)));
     grid.repaint(viewElements);
-    updateLabel(board.stepNumber());
+    updateGenerationLabel(board.stepNumber());
   }
 
   private ViewElement getViewElement(List<ModelElement> squareState) {
@@ -120,14 +120,14 @@ public class Controller {
     this.pause();
     board.reset();
     pauseToggleButton.setSelected(true);
-    repaintBoard();
+    repaintGrid();
   }
 
   public void initialize(int squareWidth, int squareHeight, int columnCount,
                                 int rowCount, int initialFireCount, int initialFirefighterCount) {
     grid.initialize(squareWidth, squareHeight, columnCount, rowCount);
     this.setModel(new FirefighterBoard(columnCount, rowCount, initialFireCount, initialFirefighterCount));
-    repaintBoard();
+    repaintGrid();
   }
 
   public void oneStepButtonAction() {
@@ -135,7 +135,7 @@ public class Controller {
     updateBoard();
   }
 
-  private void updateLabel(int value){
+  private void updateGenerationLabel(int value){
     generationNumberLabel.setText(Integer.toString(value));
   }
 }
