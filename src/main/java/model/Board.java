@@ -1,6 +1,6 @@
-package firefighter.model;
+package model;
 
-import firefighter.util.Position;
+import util.Position;
 
 import java.util.List;
 

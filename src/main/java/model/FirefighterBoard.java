@@ -1,6 +1,6 @@
-package firefighter.model;
+package model;
 
-import firefighter.util.Position;
+import util.Position;
 
 import java.util.*;
 
@@ -143,6 +143,10 @@ public class FirefighterBoard implements Board<List<ModelElement>> {
 
   @Override
   public void setState(List<ModelElement> state, Position position) {
+    firePositions.remove(position);
+    for (;;) {
+      if (!firefighterPositions.remove(position)) break;
+    }
     for(ModelElement element : state){
       switch (element){
         case FIRE -> firePositions.add(position);

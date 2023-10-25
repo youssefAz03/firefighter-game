@@ -1,4 +1,4 @@
-package firefighter.controller;
+package controller;
 
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
@@ -12,12 +12,12 @@ import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.util.Duration;
 import javafx.util.Pair;
-import firefighter.model.Board;
-import firefighter.model.ModelElement;
-import firefighter.model.FirefighterBoard;
-import firefighter.util.Position;
-import firefighter.view.FirefighterGrid;
-import firefighter.view.ViewElement;
+import model.Board;
+import model.ModelElement;
+import model.FirefighterBoard;
+import util.Position;
+import view.Grid;
+import view.ViewElement;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,7 +38,7 @@ public class Controller {
   @FXML
   private ToggleButton playToggleButton;
   @FXML
-  private FirefighterGrid grid;
+  private Grid<ViewElement> grid;
   private Timeline timeline;
   private Board<List<ModelElement>> board;
 
@@ -125,7 +125,7 @@ public class Controller {
 
   public void initialize(int squareWidth, int squareHeight, int columnCount,
                                 int rowCount, int initialFireCount, int initialFirefighterCount) {
-    grid.initialize(squareWidth, squareHeight, columnCount, rowCount);
+    grid.setDimensions(columnCount, rowCount, squareWidth, squareHeight);
     this.setModel(new FirefighterBoard(columnCount, rowCount, initialFireCount, initialFirefighterCount));
     repaintGrid();
   }

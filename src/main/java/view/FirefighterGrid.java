@@ -1,9 +1,9 @@
-package firefighter.view;
+package view;
 
 import javafx.scene.canvas.Canvas;
 import javafx.scene.paint.Color;
 import javafx.util.Pair;
-import firefighter.util.Position;
+import util.Position;
 
 import java.util.List;
 
@@ -35,21 +35,19 @@ public class FirefighterGrid extends Canvas implements Grid<ViewElement>{
         paintLines();
     }
 
-    public int getColumnCount() {
+    public int columnCount() {
         return columnCount;
     }
 
-    public int getRowCount() {
+    public int rowCount() {
         return rowCount;
     }
 
     public FirefighterGrid(){
     }
 
-    public void initialize(int squareWidth,
-                           int squareHeight,
-                           int columnCount,
-                           int rowCount) {
+    @Override
+    public void setDimensions(int columnCount, int rowCount, int squareWidth, int squareHeight) {
         this.squareWidth = squareWidth;
         this.squareHeight = squareHeight;
         this.columnCount = columnCount;

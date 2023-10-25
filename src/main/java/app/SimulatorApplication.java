@@ -1,6 +1,6 @@
-package firefighter.app;
+package app;
 
-import firefighter.controller.Controller;
+import controller.Controller;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -11,7 +11,7 @@ import java.io.IOException;
 import java.net.URL;
 
 public class SimulatorApplication extends javafx.application.Application {
-  private static final String VIEW_RESOURCE_PATH = "/firefighter/view/view.fxml";
+  private static final String VIEW_RESOURCE_PATH = "/view/view.fxml";
   private static final String APP_NAME = "Firefighter simulator";
   private static final int ROW_COUNT = 20;
   private static final int COLUMN_COUNT = 20;

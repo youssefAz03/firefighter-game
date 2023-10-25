@@ -1,7 +1,7 @@
-package firefighter.view;
+package view;
 
 import javafx.util.Pair;
-import firefighter.util.Position;
+import util.Position;
 
 import java.util.List;
 
@@ -28,17 +28,29 @@ public interface Grid<E> {
   void repaint(E[][] elements);
 
   /**
+   * Set the dimensions of the grid to the specified column count, row count, square width, and square height.
+   * This method adjusts the dimensions of the grid to the given number of columns, number of rows, square width,
+   * and square height.
+   *
+   * @param columnCount The new number of columns in the grid.
+   * @param rowCount The new number of rows in the grid.
+   * @param squareWidth The width of each square within the grid.
+   * @param squareHeight The height of each square within the grid.
+   */
+  void setDimensions(int columnCount, int rowCount, int squareWidth, int squareHeight);
+
+  /**
    * Get the number of columns in the grid.
    *
    * @return The number of columns in the grid.
    */
-  int getColumnCount();
+  int columnCount();
 
   /**
    * Get the number of rows in the grid.
    *
    * @return The number of rows in the grid.
    */
-  int getRowCount();
+  int rowCount();
 }
 

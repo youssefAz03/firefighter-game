@@ -1,4 +1,4 @@
-package firefighter.controller;
+package controller;
 
 import javafx.collections.ListChangeListener.Change;
 import javafx.scene.control.Toggle;

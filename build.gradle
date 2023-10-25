@@ -17,9 +17,7 @@ repositories {
 }
 
 dependencies {
-    testRuntimeOnly("org.junit.platform:junit-platform-launcher") {
-        because("Only needed to run tests in a version of IntelliJ IDEA that bundles older versions")
-    }
+    testRuntimeOnly("org.junit.platform:junit-platform-launcher")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine")
     testImplementation("org.assertj:assertj-core:3.24.2")
     testImplementation("org.junit.jupiter:junit-jupiter:5.10.0")
@@ -30,11 +28,7 @@ test {
 }
 
 application {
-    mainClass.set("firefighter.app.SimulatorMain")
+    mainClass.set("app.SimulatorMain")
 }
 
-tasks {
-    shadowJar {
-        exclude("module-info.class")
-    }
-}
+

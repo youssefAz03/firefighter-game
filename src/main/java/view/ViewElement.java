@@ -1,4 +1,4 @@
-package firefighter.view;
+package view;
 
 import javafx.scene.paint.Color;
 
