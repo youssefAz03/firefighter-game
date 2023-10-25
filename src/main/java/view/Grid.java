@@ -28,8 +28,7 @@ public interface Grid<E> {
   void repaint(E[][] elements);
 
   /**
-   * Set the dimensions of the grid to the specified column count, row count, square width, and square height.
-   * This method adjusts the dimensions of the grid to the given number of columns, number of rows, square width,
+   * Set the dimensions of the grid to the specified number of columns, number of rows, square width,
    * and square height.
    *
    * @param columnCount The new number of columns in the grid.

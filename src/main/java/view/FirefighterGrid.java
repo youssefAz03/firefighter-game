@@ -19,8 +19,16 @@ public class FirefighterGrid extends Canvas implements Grid<ViewElement>{
 
     @Override
     public void repaint(List<Pair<Position, ViewElement>> positionedElements) {
+        clear(positionedElements);
         paint(positionedElements);
         paintLines();
+    }
+
+    private void clear(List<Pair<Position, ViewElement>> positionedElements) {
+        for (Pair<Position, ViewElement> positionElement : positionedElements) {
+            Position position = positionElement.getKey();
+            clearSquare(position.row(), position.column());
+        }
     }
 
     private void paint(List<Pair<Position, ViewElement>> positionedElements) {
@@ -31,8 +39,13 @@ public class FirefighterGrid extends Canvas implements Grid<ViewElement>{
 
     @Override
     public void repaint(ViewElement[][] elements) {
+        clear();
         paint(elements);
         paintLines();
+    }
+
+    private void clear() {
+        getGraphicsContext2D().clearRect(0,0,getWidth(), getHeight());
     }
 
     private void paint(ViewElement[][] elements) {
@@ -76,5 +89,9 @@ public class FirefighterGrid extends Canvas implements Grid<ViewElement>{
     private void paintSquare(int row, int column, Color color){
         getGraphicsContext2D().setFill(color);
         getGraphicsContext2D().fillRect(row*squareHeight,column*squareWidth,squareHeight,squareWidth);
+    }
+
+    private void clearSquare(int row, int column){
+        getGraphicsContext2D().clearRect(row*squareHeight,column*squareWidth,squareHeight,squareWidth);
     }
 }
