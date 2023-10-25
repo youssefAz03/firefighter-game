@@ -58,13 +58,13 @@ public class FirefighterBoard implements Board<List<ModelElement>> {
   }
 
   public List<Position> updateToNextGeneration() {
-    List<Position> result = activateFirefighters();
-    result.addAll(activateFires());
+    List<Position> result = updateFirefighters();
+    result.addAll(updateFires());
     step++;
     return result;
   }
 
-  private List<Position> activateFires() {
+  private List<Position> updateFires() {
     List<Position> result = new ArrayList<>();
     if (step % 2 == 0) {
       List<Position> newFirePositions = new ArrayList<>();
@@ -83,7 +83,7 @@ public class FirefighterBoard implements Board<List<ModelElement>> {
     return step;
   }
 
-  private List<Position> activateFirefighters() {
+  private List<Position> updateFirefighters() {
     List<Position> result = new ArrayList<>();
     List<Position> firefighterNewPositions = new ArrayList<>();
     for (Position firefighterPosition : firefighterPositions) {

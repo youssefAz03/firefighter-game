@@ -12,7 +12,6 @@ public class FirefighterGrid extends Canvas implements Grid<ViewElement>{
     private void paintElementAtPosition(ViewElement element, Position position) {
         paintSquare(position.row(), position.column(), element.color);
     }
-
     private int squareWidth;
     private int squareHeight;
     private int columnCount;
@@ -20,19 +19,27 @@ public class FirefighterGrid extends Canvas implements Grid<ViewElement>{
 
     @Override
     public void repaint(List<Pair<Position, ViewElement>> positionedElements) {
+        paint(positionedElements);
+        paintLines();
+    }
+
+    private void paint(List<Pair<Position, ViewElement>> positionedElements) {
         for(Pair<Position, ViewElement> pair : positionedElements){
             paintElementAtPosition(pair.getValue(), pair.getKey());
         }
-        paintLines();
     }
 
     @Override
     public void repaint(ViewElement[][] elements) {
+        paint(elements);
+        paintLines();
+    }
+
+    private void paint(ViewElement[][] elements) {
         for(int column = 0; column < columnCount; column++)
             for(int row = 0; row < rowCount; row++){
                 paintElementAtPosition(elements[row][column], new Position(row, column));
             }
-        paintLines();
     }
 
     public int columnCount() {
@@ -41,9 +48,6 @@ public class FirefighterGrid extends Canvas implements Grid<ViewElement>{
 
     public int rowCount() {
         return rowCount;
-    }
-
-    public FirefighterGrid(){
     }
 
     @Override
@@ -55,17 +59,22 @@ public class FirefighterGrid extends Canvas implements Grid<ViewElement>{
     }
 
     private void paintLines(){
-        for(int column=0; column<columnCount; column++)
-            getGraphicsContext2D().strokeLine(0, column*squareHeight, getWidth(), column*squareWidth);
-        for(int row=0; row<rowCount;row++)
-            getGraphicsContext2D().strokeLine(row*squareHeight, 0,row*squareHeight, getHeight());
+        paintHorizontalLines();
+        paintVerticalLines();
+    }
+
+    private void paintVerticalLines() {
+        for(int column = 0; column < columnCount; column++)
+            getGraphicsContext2D().strokeLine(column*squareWidth, 0,column*squareWidth, getHeight());
+    }
+
+    private void paintHorizontalLines() {
+        for(int row = 0; row < rowCount; row++)
+            getGraphicsContext2D().strokeLine(0, row*squareHeight, getWidth(), row*squareHeight);
     }
 
     private void paintSquare(int row, int column, Color color){
         getGraphicsContext2D().setFill(color);
         getGraphicsContext2D().fillRect(row*squareHeight,column*squareWidth,squareHeight,squareWidth);
     }
-
-
-
 }
