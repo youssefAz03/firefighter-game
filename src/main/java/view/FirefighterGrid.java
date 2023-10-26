@@ -69,6 +69,8 @@ public class FirefighterGrid extends Canvas implements Grid<ViewElement>{
         this.squareHeight = squareHeight;
         this.columnCount = columnCount;
         this.rowCount = rowCount;
+        super.setWidth(squareWidth*columnCount);
+        super.setHeight(squareHeight*rowCount);
     }
 
     private void paintLines(){
@@ -88,10 +90,10 @@ public class FirefighterGrid extends Canvas implements Grid<ViewElement>{
 
     private void paintSquare(int row, int column, Color color){
         getGraphicsContext2D().setFill(color);
-        getGraphicsContext2D().fillRect(row*squareHeight,column*squareWidth,squareHeight,squareWidth);
+        getGraphicsContext2D().fillRect(column*squareWidth,row*squareHeight, squareWidth, squareHeight);
     }
 
     private void clearSquare(int row, int column){
-        getGraphicsContext2D().clearRect(row*squareHeight,column*squareWidth,squareHeight,squareWidth);
+        getGraphicsContext2D().clearRect(column*squareWidth,row*squareHeight, squareWidth, squareHeight);
     }
 }
