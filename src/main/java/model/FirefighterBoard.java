@@ -58,23 +58,23 @@ public class FirefighterBoard implements Board<List<ModelElement>> {
   }
 
   public List<Position> updateToNextGeneration() {
-    List<Position> result = updateFirefighters();
-    result.addAll(updateFires());
+    List<Position> modifiedPositions = updateFirefighters();
+    modifiedPositions.addAll(updateFires());
     step++;
-    return result;
+    return modifiedPositions;
   }
 
   private List<Position> updateFires() {
-    List<Position> result = new ArrayList<>();
+    List<Position> modifiedPositions = new ArrayList<>();
     if (step % 2 == 0) {
       List<Position> newFirePositions = new ArrayList<>();
       for (Position fire : firePositions) {
         newFirePositions.addAll(neighbors(fire));
       }
       firePositions.addAll(newFirePositions);
-      result.addAll(newFirePositions);
+      modifiedPositions.addAll(newFirePositions);
     }
-    return result;
+    return modifiedPositions;
 
   }
 
@@ -84,22 +84,22 @@ public class FirefighterBoard implements Board<List<ModelElement>> {
   }
 
   private List<Position> updateFirefighters() {
-    List<Position> result = new ArrayList<>();
+    List<Position> modifiedPosition = new ArrayList<>();
     List<Position> firefighterNewPositions = new ArrayList<>();
     for (Position firefighterPosition : firefighterPositions) {
       Position newFirefighterPosition = neighborClosestToFire(firefighterPosition);
       firefighterNewPositions.add(newFirefighterPosition);
       extinguish(newFirefighterPosition);
-      result.add(firefighterPosition);
-      result.add(newFirefighterPosition);
+      modifiedPosition.add(firefighterPosition);
+      modifiedPosition.add(newFirefighterPosition);
       List<Position> neighborFirePositions = neighbors(newFirefighterPosition).stream()
               .filter(firePositions::contains).toList();
       for(Position firePosition : neighborFirePositions)
         extinguish(firePosition);
-      result.addAll(neighborFirePositions);
+      modifiedPosition.addAll(neighborFirePositions);
     }
     firefighterPositions = firefighterNewPositions;
-    return result;
+    return modifiedPosition;
   }
 
   @Override
