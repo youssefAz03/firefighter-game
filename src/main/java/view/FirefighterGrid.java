@@ -10,10 +10,10 @@ import java.util.List;
 public class FirefighterGrid extends Canvas implements Grid<ViewElement>{
 
     private void paintElementAtPosition(ViewElement element, Position position) {
-        paintSquare(position.row(), position.column(), element.color);
+        paintBox(position.row(), position.column(), element.color);
     }
-    private int squareWidth;
-    private int squareHeight;
+    private int boxWidth;
+    private int boxHeight;
     private int columnCount;
     private int rowCount;
 
@@ -27,7 +27,7 @@ public class FirefighterGrid extends Canvas implements Grid<ViewElement>{
     private void clear(List<Pair<Position, ViewElement>> positionedElements) {
         for (Pair<Position, ViewElement> positionElement : positionedElements) {
             Position position = positionElement.getKey();
-            clearSquare(position.row(), position.column());
+            clearBox(position.row(), position.column());
         }
     }
 
@@ -64,13 +64,13 @@ public class FirefighterGrid extends Canvas implements Grid<ViewElement>{
     }
 
     @Override
-    public void setDimensions(int columnCount, int rowCount, int squareWidth, int squareHeight) {
-        this.squareWidth = squareWidth;
-        this.squareHeight = squareHeight;
+    public void setDimensions(int columnCount, int rowCount, int boxWidth, int boxHeight) {
+        this.boxWidth = boxWidth;
+        this.boxHeight = boxHeight;
         this.columnCount = columnCount;
         this.rowCount = rowCount;
-        super.setWidth(squareWidth*columnCount);
-        super.setHeight(squareHeight*rowCount);
+        super.setWidth(boxWidth * columnCount);
+        super.setHeight(boxHeight * rowCount);
     }
 
     private void paintLines(){
@@ -80,20 +80,20 @@ public class FirefighterGrid extends Canvas implements Grid<ViewElement>{
 
     private void paintVerticalLines() {
         for(int column = 0; column < columnCount; column++)
-            getGraphicsContext2D().strokeLine(column*squareWidth, 0,column*squareWidth, getHeight());
+            getGraphicsContext2D().strokeLine(column * boxWidth, 0,column * boxWidth, getHeight());
     }
 
     private void paintHorizontalLines() {
         for(int row = 0; row < rowCount; row++)
-            getGraphicsContext2D().strokeLine(0, row*squareHeight, getWidth(), row*squareHeight);
+            getGraphicsContext2D().strokeLine(0, row * boxHeight, getWidth(), row * boxHeight);
     }
 
-    private void paintSquare(int row, int column, Color color){
+    private void paintBox(int row, int column, Color color){
         getGraphicsContext2D().setFill(color);
-        getGraphicsContext2D().fillRect(column*squareWidth,row*squareHeight, squareWidth, squareHeight);
+        getGraphicsContext2D().fillRect(column * boxWidth,row * boxHeight, boxWidth, boxHeight);
     }
 
-    private void clearSquare(int row, int column){
-        getGraphicsContext2D().clearRect(column*squareWidth,row*squareHeight, squareWidth, squareHeight);
+    private void clearBox(int row, int column){
+        getGraphicsContext2D().clearRect(column * boxWidth,row * boxHeight, boxWidth, boxHeight);
     }
 }
