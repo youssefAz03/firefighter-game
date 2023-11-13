@@ -4,7 +4,6 @@ import util.Position;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 public class Firefighter implements Elements<List<Position>> {
 
