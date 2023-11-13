@@ -4,6 +4,8 @@ import util.Position;
 
 import java.util.List;
 
-public interface Elements {
-    List<Position> getPositions();
+public interface Elements <T>{
+    T getPositions();
+    void setPositions(T positions);
+    int getInitialCount();
 }
