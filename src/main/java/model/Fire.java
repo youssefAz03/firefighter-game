@@ -2,27 +2,29 @@ package model;
 
 import util.Position;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
-public class Fire implements Elements<List<Position>>{
+public class Fire implements Elements<Set<Position>>{
 
     private final int initialFireCount;
-    private List<Position> firefighterPositions;
+    private Set<Position> firePositions;
 
     public Fire(int initialFireCount) {
         this.initialFireCount = initialFireCount;
-        this.firefighterPositions = new ArrayList<>();
+        this.firePositions = new HashSet<>();
     }
 
     @Override
-    public List<Position> getPositions() {
-        return firefighterPositions;
+    public Set<Position> getPositions() {
+        return firePositions;
     }
 
+
+
     @Override
-    public void setPositions(List<Position> positions) {
-        this.firefighterPositions = positions;
+    public void setPositions(Set<Position> positions) {
+        this.firePositions = positions;
     }
 
     @Override
