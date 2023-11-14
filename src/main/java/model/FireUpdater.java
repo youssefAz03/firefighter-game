@@ -11,16 +11,17 @@ public class FireUpdater implements Updater{
 
     private int step;
 
+    private Fire fire;
     private Set<Position> firePositions;
     private final int columnCount;
     private final int rowCount;
 
 
-    public FireUpdater(int step, int columnCount, int rowCount) {
+    public FireUpdater(int step, int columnCount, int rowCount , Set<Position> firePositions) {
         this.step = step;
         this.columnCount = columnCount;
         this.rowCount = rowCount;
-        this.firePositions =new HashSet<>();
+        this.firePositions = firePositions;
     }
 
     @Override
