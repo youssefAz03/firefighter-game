@@ -1,6 +1,5 @@
 package model;
 
-import javafx.geometry.Pos;
 import util.Position;
 
 import java.util.ArrayList;
@@ -13,14 +12,31 @@ public class FireUpdater implements Updater{
     private int step;
 
     private Set<Position> firePositions;
+    private final int columnCount;
+    private final int rowCount;
 
-    public FireUpdater(int step) {
+
+    public FireUpdater(int step, int columnCount, int rowCount) {
         this.step = step;
+        this.columnCount = columnCount;
+        this.rowCount = rowCount;
         this.firePositions =new HashSet<>();
     }
 
     @Override
     public List<Position> Update() {
-        return null;
+        Neighbors fireNeighbors = new Neighbors(columnCount,rowCount);
+
+        List<Position> modifiedPositions = new ArrayList<>();
+        if (step % 2 == 0) {
+            List<Position> newFirePositions = new ArrayList<>();
+            for (Position fire : firePositions) {
+                newFirePositions.addAll(fireNeighbors.neighbors(fire));
+            }
+            firePositions.addAll(newFirePositions);
+            modifiedPositions.addAll(newFirePositions);
+        }
+        return modifiedPositions;
+
     }
 }
