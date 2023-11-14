@@ -10,8 +10,6 @@ import java.util.Set;
 public class FireUpdater implements Updater{
 
     private int step;
-
-    private Fire fire;
     private Set<Position> firePositions;
     private final int columnCount;
     private final int rowCount;
@@ -26,18 +24,17 @@ public class FireUpdater implements Updater{
 
     @Override
     public List<Position> Update() {
-        Neighbors fireNeighbors = new Neighbors(columnCount,rowCount);
+        Neighbors neighborsPosition = new Neighbors(columnCount,rowCount);
 
         List<Position> modifiedPositions = new ArrayList<>();
         if (step % 2 == 0) {
             List<Position> newFirePositions = new ArrayList<>();
             for (Position fire : firePositions) {
-                newFirePositions.addAll(fireNeighbors.neighbors(fire));
+                newFirePositions.addAll(neighborsPosition.neighbors(fire));
             }
             firePositions.addAll(newFirePositions);
             modifiedPositions.addAll(newFirePositions);
         }
         return modifiedPositions;
-
     }
 }

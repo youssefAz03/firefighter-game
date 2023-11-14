@@ -7,15 +7,15 @@ import java.util.*;
 
 public class FirefighterBoard implements Board<List<ModelElement>> {
 
-  private Fire fire ;
-
-  private Firefighter firefighter;
+  private Elements<Set<Position>> fire ;
+  private Elements<List<Position>> firefighter;
   private final int columnCount;
   private final int rowCount;
-
   private int step = 0;
-
   private RandomPositionsGenerator randomPositionsGenerator;
+
+  private Updater fireUpdater;
+
 
   public FirefighterBoard(int columnCount, int rowCount, int initialFireCount, int initialFirefighterCount) {
     this.columnCount = columnCount;
@@ -110,12 +110,8 @@ public class FirefighterBoard implements Board<List<ModelElement>> {
   }
 
   private List<Position> neighbors(Position position) {
-    List<Position> list = new ArrayList<>();
-    if (position.row() > 0) list.add(new Position(position.row() - 1, position.column()));
-    if (position.column() > 0) list.add(new Position(position.row(), position.column() - 1));
-    if (position.row() < rowCount - 1) list.add(new Position(position.row() + 1, position.column()));
-    if (position.column() < columnCount - 1) list.add(new Position(position.row(), position.column() + 1));
-    return list;
+    Neighbors neighborsOfPosition = new Neighbors(columnCount,rowCount);
+    return neighborsOfPosition.neighbors(position);
   }
 
   private Position neighborClosestToFire(Position position) {
