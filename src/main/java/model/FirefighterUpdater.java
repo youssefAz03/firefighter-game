@@ -2,33 +2,68 @@ package model;
 
 import util.Position;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class FirefighterUpdater implements Updater{
 
     private int step;
 
     private List<Position> firefighterPositions;
-    private Set<Position> firePositions;
-
+    private Elements<Set<Position>> fire;
     private final int columnCount;
     private final int rowCount;
 
-    public FirefighterUpdater(int step, int columnCount, int rowCount) {
+    public FirefighterUpdater(int step, List<Position> firefighterPositions, Elements<Set<Position>> fire, int columnCount, int rowCount) {
         this.step = step;
+        this.firefighterPositions = firefighterPositions;
+        this.fire = fire;
         this.columnCount = columnCount;
         this.rowCount = rowCount;
-        this.firefighterPositions = new ArrayList<>();
     }
+
 
     @Override
     public List<Position> Update() {
-        return null;
-    }
+        Neighbors neighbors = new Neighbors(columnCount,rowCount);
+        List<Position> modifiedPosition = new ArrayList<>();
+        List<Position> firefighterNewPositions = new ArrayList<>();
 
-    public void extinguish(Position position) {
-        firePositions.remove(position);
+        for (Position firefighterPosition : firefighterPositions) {
+            Position newFirefighterPosition = neighborClosestToFire(firefighterPosition);
+            firefighterNewPositions.add(newFirefighterPosition);
+            extinguish(newFirefighterPosition);
+            modifiedPosition.add(firefighterPosition);
+            modifiedPosition.add(newFirefighterPosition);
+            List<Position> neighborFirePositions = neighbors.neighbors(newFirefighterPosition).stream()
+                    .filter(fire.getPositions()::contains).toList();
+            for(Position firePosition : neighborFirePositions)
+                extinguish(firePosition);
+            modifiedPosition.addAll(neighborFirePositions);
+        }
+        firefighterPositions = firefighterNewPositions;
+        return modifiedPosition;
+    }
+    private Position neighborClosestToFire(Position position) {
+        Set<Position> seen = new HashSet<>();
+        Neighbors neighborsOfPosition = new Neighbors(columnCount,rowCount);
+        HashMap<Position, Position> firstMove = new HashMap<>();
+        Queue<Position> toVisit = new LinkedList<>(neighborsOfPosition.neighbors(position));
+        for (Position initialMove : toVisit)
+            firstMove.put(initialMove, initialMove);
+        while (!toVisit.isEmpty()) {
+            Position current = toVisit.poll();
+            if (fire.getPositions().contains(current))
+                return firstMove.get(current);
+            for (Position adjacent : neighborsOfPosition.neighbors(current)) {
+                if (seen.contains(adjacent)) continue;
+                toVisit.add(adjacent);
+                seen.add(adjacent);
+                firstMove.put(adjacent, firstMove.get(current));
+            }
+        }
+        return position;
+    }
+    private void extinguish(Position position) {
+        fire.getPositions().remove(position);
     }
 }

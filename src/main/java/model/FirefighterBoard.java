@@ -14,7 +14,7 @@ public class FirefighterBoard implements Board<List<ModelElement>> {
   private int step = 0;
   private RandomPositionsGenerator randomPositionsGenerator;
 
-  private Updater fireUpdater;
+  private Updater Updater;
 
 
   public FirefighterBoard(int columnCount, int rowCount, int initialFireCount, int initialFirefighterCount) {
