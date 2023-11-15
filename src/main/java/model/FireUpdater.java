@@ -23,7 +23,7 @@ public class FireUpdater implements Updater{
     }
 
     @Override
-    public List<Position> Update() {
+    public List<Position> update() {
         Neighbors neighborsPosition = new Neighbors(columnCount,rowCount);
 
         List<Position> modifiedPositions = new ArrayList<>();

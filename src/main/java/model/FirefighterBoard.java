@@ -14,7 +14,7 @@ public class FirefighterBoard implements Board<List<ModelElement>> {
   private int step = 0;
   private RandomPositionsGenerator randomPositionsGenerator;
 
-  private Updater Updater;
+  private Updater updater;
 
 
   public FirefighterBoard(int columnCount, int rowCount, int initialFireCount, int initialFirefighterCount) {
@@ -55,49 +55,51 @@ public class FirefighterBoard implements Board<List<ModelElement>> {
   }
 
   public List<Position> updateToNextGeneration() {
-    List<Position> modifiedPositions = updateFirefighters();
-    modifiedPositions.addAll(updateFires());
+    this.updater = new FirefighterUpdater(firefighter,fire,columnCount,rowCount);
+    List<Position> modifiedPositions = updater.update();
+    this.updater = new FireUpdater(step,columnCount,rowCount,fire.getPositions());
+    modifiedPositions.addAll(updater.update());
     step++;
     return modifiedPositions;
   }
 
-  private List<Position> updateFires() {
-    List<Position> modifiedPositions = new ArrayList<>();
-    if (step % 2 == 0) {
-      List<Position> newFirePositions = new ArrayList<>();
-      for (Position fire : fire.getPositions()) {
-        newFirePositions.addAll(neighbors(fire));
-      }
-      fire.getPositions().addAll(newFirePositions);
-      modifiedPositions.addAll(newFirePositions);
-    }
-    return modifiedPositions;
-
-  }
+//  private List<Position> updateFires() {
+//    List<Position> modifiedPositions = new ArrayList<>();
+//    if (step % 2 == 0) {
+//      List<Position> newFirePositions = new ArrayList<>();
+//      for (Position fire : fire.getPositions()) {
+//        newFirePositions.addAll(neighbors(fire));
+//      }
+//      fire.getPositions().addAll(newFirePositions);
+//      modifiedPositions.addAll(newFirePositions);
+//    }
+//    return modifiedPositions;
+//
+//  }
 
   @Override
   public int stepNumber() {
     return step;
   }
 
-  private List<Position> updateFirefighters() {
-    List<Position> modifiedPosition = new ArrayList<>();
-    List<Position> firefighterNewPositions = new ArrayList<>();
-    for (Position firefighterPosition : firefighter.getPositions()) {
-      Position newFirefighterPosition = neighborClosestToFire(firefighterPosition);
-      firefighterNewPositions.add(newFirefighterPosition);
-      extinguish(newFirefighterPosition);
-      modifiedPosition.add(firefighterPosition);
-      modifiedPosition.add(newFirefighterPosition);
-      List<Position> neighborFirePositions = neighbors(newFirefighterPosition).stream()
-              .filter(fire.getPositions()::contains).toList();
-      for(Position firePosition : neighborFirePositions)
-        extinguish(firePosition);
-      modifiedPosition.addAll(neighborFirePositions);
-    }
-    firefighter.setPositions(firefighterNewPositions);
-    return modifiedPosition;
-  }
+//  private List<Position> updateFirefighters() {
+//    List<Position> modifiedPosition = new ArrayList<>();
+//    List<Position> firefighterNewPositions = new ArrayList<>();
+//    for (Position firefighterPosition : firefighter.getPositions()) {
+//      Position newFirefighterPosition = neighborClosestToFire(firefighterPosition);
+//      firefighterNewPositions.add(newFirefighterPosition);
+//      extinguish(newFirefighterPosition);
+//      modifiedPosition.add(firefighterPosition);
+//      modifiedPosition.add(newFirefighterPosition);
+//      List<Position> neighborFirePositions = neighbors(newFirefighterPosition).stream()
+//              .filter(fire.getPositions()::contains).toList();
+//      for(Position firePosition : neighborFirePositions)
+//        extinguish(firePosition);
+//      modifiedPosition.addAll(neighborFirePositions);
+//    }
+//    firefighter.setPositions(firefighterNewPositions);
+//    return modifiedPosition;
+//  }
 
   @Override
   public void reset() {
@@ -105,16 +107,16 @@ public class FirefighterBoard implements Board<List<ModelElement>> {
     initializeElements();
   }
 
-  private void extinguish(Position position) {
-    fire.getPositions().remove(position);
-  }
+//  private void extinguish(Position position) {
+//    fire.getPositions().remove(position);
+//  }
 
-  private List<Position> neighbors(Position position) {
+/*  private List<Position> neighbors(Position position) {
     Neighbors neighborsOfPosition = new Neighbors(columnCount,rowCount);
     return neighborsOfPosition.neighbors(position);
-  }
+  }*/
 
-  private Position neighborClosestToFire(Position position) {
+ /* private Position neighborClosestToFire(Position position) {
     Set<Position> seen = new HashSet<>();
     HashMap<Position, Position> firstMove = new HashMap<>();
     Queue<Position> toVisit = new LinkedList<>(neighbors(position));
@@ -132,7 +134,7 @@ public class FirefighterBoard implements Board<List<ModelElement>> {
       }
     }
     return position;
-  }
+  }*/
 
   @Override
   public void setState(List<ModelElement> state, Position position) {

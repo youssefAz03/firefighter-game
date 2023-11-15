@@ -5,5 +5,5 @@ import util.Position;
 import java.util.List;
 
 public interface Updater {
-    List<Position> Update();
+    List<Position> update();
 }

@@ -6,16 +6,13 @@ import java.util.*;
 
 public class FirefighterUpdater implements Updater{
 
-    private int step;
-
-    private List<Position> firefighterPositions;
+    private Elements<List<Position>> firefighter;
     private Elements<Set<Position>> fire;
     private final int columnCount;
     private final int rowCount;
 
-    public FirefighterUpdater(int step, List<Position> firefighterPositions, Elements<Set<Position>> fire, int columnCount, int rowCount) {
-        this.step = step;
-        this.firefighterPositions = firefighterPositions;
+    public FirefighterUpdater( Elements<List<Position>> firefighter, Elements<Set<Position>> fire, int columnCount, int rowCount) {
+        this.firefighter = firefighter;
         this.fire = fire;
         this.columnCount = columnCount;
         this.rowCount = rowCount;
@@ -23,12 +20,12 @@ public class FirefighterUpdater implements Updater{
 
 
     @Override
-    public List<Position> Update() {
+    public List<Position> update() {
         Neighbors neighbors = new Neighbors(columnCount,rowCount);
         List<Position> modifiedPosition = new ArrayList<>();
         List<Position> firefighterNewPositions = new ArrayList<>();
 
-        for (Position firefighterPosition : firefighterPositions) {
+        for (Position firefighterPosition : firefighter.getPositions()) {
             Position newFirefighterPosition = neighborClosestToFire(firefighterPosition);
             firefighterNewPositions.add(newFirefighterPosition);
             extinguish(newFirefighterPosition);
@@ -40,7 +37,7 @@ public class FirefighterUpdater implements Updater{
                 extinguish(firePosition);
             modifiedPosition.addAll(neighborFirePositions);
         }
-        firefighterPositions = firefighterNewPositions;
+        firefighter.setPositions(firefighterNewPositions);
         return modifiedPosition;
     }
     private Position neighborClosestToFire(Position position) {
