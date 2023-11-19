@@ -3,6 +3,7 @@ package model;
 import util.Position;
 
 import java.util.List;
+import java.util.Set;
 
 /**
  * This interface represents a generic board for modeling various state-based systems.
@@ -10,22 +11,6 @@ import java.util.List;
  * @param <S> The type of state represented on the board.
  */
 public interface Board<S> {
-
-    /**
-     * Get the state of the board at a specific position.
-     *
-     * @param position The position on the board for which to retrieve the state.
-     * @return The state at the specified position.
-     */
-    S getState(Position position);
-
-    /**
-     * Set the state of a specific position on the board to the specified state.
-     *
-     * @param state    The state to set for the given position.
-     * @param position The position on the board for which to set the state.
-     */
-    void setState(S state, Position position);
 
     /**
      * Get the number of rows in the board.
@@ -61,5 +46,8 @@ public interface Board<S> {
      * @return The current step number or generation.
      */
     int stepNumber();
+    Elements<List<Position>> getFirefighter();
+    Elements<Set<Position>> getFire();
+
 }
 
