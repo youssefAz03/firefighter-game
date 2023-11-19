@@ -7,9 +7,9 @@ import java.util.List;
 
 public class StateManager implements State<List<ModelElement>>{
 
-    private Board<List<ModelElement>> board;
+    private Board board;
 
-    public StateManager(Board<List<ModelElement>> board) {
+    public StateManager(Board board) {
         this.board = board;
     }
 

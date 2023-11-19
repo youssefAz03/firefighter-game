@@ -38,7 +38,7 @@ public class Controller {
   @FXML
   private Grid<ViewElement> grid;
   private Timeline timeline;
-  private Board<List<ModelElement>> board;
+  private Board board;
   private State<List<ModelElement>> state;
 
   @FXML

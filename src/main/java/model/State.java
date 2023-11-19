@@ -2,7 +2,13 @@ package model;
 
 import util.Position;
 
-import java.util.Set;
+/**
+ * Represents a state manager for a board at specific positions.
+ * Implementations of this interface provide methods to retrieve and set the state
+ * of a position on the board.
+ *
+ * @param <S> The type of state represented on the board.
+ */
 
 public interface State<S>{
     /**

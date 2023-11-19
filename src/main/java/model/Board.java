@@ -6,11 +6,10 @@ import java.util.List;
 import java.util.Set;
 
 /**
- * This interface represents a generic board for modeling various state-based systems.
+ * This interface represents a board for modeling various state-based systems.
  *
- * @param <S> The type of state represented on the board.
  */
-public interface Board<S> {
+public interface Board {
 
     /**
      * Get the number of rows in the board.

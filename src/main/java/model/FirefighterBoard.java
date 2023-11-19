@@ -5,7 +5,7 @@ import util.Position;
 import java.util.*;
 
 
-public class FirefighterBoard implements Board<List<ModelElement>> {
+public class FirefighterBoard implements Board {
 
     private final Elements<Set<Position>> fire;
     private final Elements<List<Position>> firefighter;
