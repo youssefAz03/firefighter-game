@@ -46,7 +46,19 @@ public interface Board<S> {
      * @return The current step number or generation.
      */
     int stepNumber();
+
+    /**
+     * Get the element representing the positions of firefighters on the board.
+     *
+     * @return The element containing the positions of firefighters.
+     */
     Elements<List<Position>> getFirefighter();
+
+    /**
+     * Get the element representing the positions of fire on the board.
+     *
+     * @return The element containing the positions of fire.
+     */
     Elements<Set<Position>> getFire();
 
 }

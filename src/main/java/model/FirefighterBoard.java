@@ -33,8 +33,8 @@ public class FirefighterBoard implements Board<List<ModelElement>> {
             firefighter.getPositions().add(randomPositionsGenerator.randomPosition());
     }
 
-    @Override
-    public List<ModelElement> getState(Position position) {
+//    @Override
+    /*public List<ModelElement> getState(Position position) {
         List<ModelElement> result = new ArrayList<>();
         for (Position firefighterPosition : firefighter.getPositions())
             if (firefighterPosition.equals(position))
@@ -42,7 +42,7 @@ public class FirefighterBoard implements Board<List<ModelElement>> {
         if (fire.getPositions().contains(position))
             result.add(ModelElement.FIRE);
         return result;
-    }
+    }*/
 
     @Override
     public int rowCount() {
@@ -52,6 +52,14 @@ public class FirefighterBoard implements Board<List<ModelElement>> {
     @Override
     public int columnCount() {
         return columnCount;
+    }
+    @Override
+    public Elements<Set<Position>> getFire() {
+        return fire;
+    }
+    @Override
+    public Elements<List<Position>> getFirefighter() {
+        return firefighter;
     }
 
     public List<Position> updateToNextGeneration() {
@@ -74,7 +82,7 @@ public class FirefighterBoard implements Board<List<ModelElement>> {
         initializeElements();
     }
 
-    @Override
+   /* @Override
     public void setState(List<ModelElement> state, Position position) {
         fire.getPositions().remove(position);
         for (; ; ) {
@@ -86,5 +94,5 @@ public class FirefighterBoard implements Board<List<ModelElement>> {
                 case FIREFIGHTER -> firefighter.getPositions().add(position);
             }
         }
-    }
+    }*/
 }

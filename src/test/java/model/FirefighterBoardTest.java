@@ -30,10 +30,11 @@ public class FirefighterBoardTest {
   @Test
   void testGetState_afterSet(){
     Board<List<ModelElement>> board = new FirefighterBoard(20, 10, 0, 0);
+    State<List<ModelElement>> state = new StateManager(board);
     Position position = new Position(1,2);
-    assertThat(board.getState(position)).isEmpty();
-    board.setState(List.of(ModelElement.FIRE), position);
-    assertThat(board.getState(position)).containsExactly(ModelElement.FIRE);
+    assertThat(state.getState(position)).isEmpty();
+    state.setState(List.of(ModelElement.FIRE), position);
+    assertThat(state.getState(position)).containsExactly(ModelElement.FIRE);
   }
 
 }

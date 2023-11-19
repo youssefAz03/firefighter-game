@@ -12,9 +12,7 @@ import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.util.Duration;
 import javafx.util.Pair;
-import model.Board;
-import model.ModelElement;
-import model.FirefighterBoard;
+import model.*;
 import util.Position;
 import view.Grid;
 import view.ViewElement;
@@ -41,6 +39,7 @@ public class Controller {
   private Grid<ViewElement> grid;
   private Timeline timeline;
   private Board<List<ModelElement>> board;
+  private State<List<ModelElement>> state;
 
   @FXML
   private void initialize() {
@@ -56,13 +55,14 @@ public class Controller {
 
   private void setModel(FirefighterBoard firefighterBoard) {
     this.board = requireNonNull(firefighterBoard, "firefighter.model is null");
+    this.state = new StateManager(board);
   }
 
   private void updateBoard(){
     List<Position> updatedPositions = board.updateToNextGeneration();
     List<Pair<Position, ViewElement>> updatedSquares = new ArrayList<>();
     for(Position updatedPosition : updatedPositions){
-      List<ModelElement> squareState = board.getState(updatedPosition);
+      List<ModelElement> squareState = state.getState(updatedPosition);
       ViewElement viewElement = getViewElement(squareState);
       updatedSquares.add(new Pair<>(updatedPosition, viewElement));
     }
@@ -76,7 +76,7 @@ public class Controller {
     ViewElement[][] viewElements = new ViewElement[rowCount][columnCount];
     for(int column = 0; column < columnCount; column++)
       for(int row = 0; row < rowCount; row++)
-        viewElements[row][column] = getViewElement(board.getState(new Position(row, column)));
+        viewElements[row][column] = getViewElement(state.getState(new Position(row, column)));
     grid.repaint(viewElements);
     updateGenerationLabel(board.stepNumber());
   }
