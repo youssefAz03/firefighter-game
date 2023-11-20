@@ -24,15 +24,12 @@ public interface Board {
      * @return The number of columns in the board.
      */
     int columnCount();
-
     /**
-     * Update the board to its next generation or state. This method may modify the
-     * internal state of the board and return a list of positions that have changed
-     * during the update.
+     * Set the step number of the board to the specified value.
      *
-     * @return A list of positions that have changed during the update.
+     * @param step The step number to be set for the board.
      */
-    List<Position> updateToNextGeneration();
+    void setStep(int step);
 
     /**
      * Reset the board to its initial state.

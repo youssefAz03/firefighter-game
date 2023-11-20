@@ -40,6 +40,7 @@ public class Controller {
   private Timeline timeline;
   private Board board;
   private State<List<ModelElement>> state;
+  private Updater boardUpdater;
 
   @FXML
   private void initialize() {
@@ -56,10 +57,11 @@ public class Controller {
   private void setModel(FirefighterBoard firefighterBoard) {
     this.board = requireNonNull(firefighterBoard, "firefighter.model is null");
     this.state = new StateManager(board);
+    this.boardUpdater = new BoardUpdater(board);
   }
 
   private void updateBoard(){
-    List<Position> updatedPositions = board.updateToNextGeneration();
+    List<Position> updatedPositions = boardUpdater.update();
     List<Pair<Position, ViewElement>> updatedSquares = new ArrayList<>();
     for(Position updatedPosition : updatedPositions){
       List<ModelElement> squareState = state.getState(updatedPosition);

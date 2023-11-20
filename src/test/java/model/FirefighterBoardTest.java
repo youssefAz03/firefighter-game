@@ -21,9 +21,10 @@ public class FirefighterBoardTest {
   @Test
   void testStepNumber(){
     Board board = new FirefighterBoard(20, 10, 1, 3);
+    Updater updater = new BoardUpdater(board);
     for(int index = 0; index < 10; index++){
       assertThat(board.stepNumber()).isEqualTo(index);
-      board.updateToNextGeneration();
+      updater.update();
     }
     assertThat(board.stepNumber()).isEqualTo(10);
   }
