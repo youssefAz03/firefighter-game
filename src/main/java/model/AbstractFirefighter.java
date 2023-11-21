@@ -7,12 +7,26 @@ import java.util.List;
 
 public abstract class AbstractFirefighter implements Elements<List<Position>> {
 
-    private final int initialFirefighterCount;
-    private List<Position> firefighterPositions;
+    private final int initialCount;
+    private List<Position> Positions;
 
-    public AbstractFirefighter(int initialFirefighterCount) {
-        this.initialFirefighterCount = initialFirefighterCount;
-        this.firefighterPositions = new ArrayList<>();
+    public AbstractFirefighter(int initialCount) {
+        this.initialCount = initialCount;
+        this.Positions = new ArrayList<>();
+    }
+    @Override
+    public List<Position> getPositions() {
+        return this.Positions;
+    }
+
+    @Override
+    public void setPositions(List<Position> positions) {
+        this.Positions = positions;
+    }
+
+    @Override
+    public int getInitialCount() {
+        return initialCount;
     }
 
 }
