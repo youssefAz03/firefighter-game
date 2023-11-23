@@ -9,30 +9,24 @@ import java.util.Set;
 
 public class FireUpdater implements Updater{
 
-    private int step;
-    private Set<Position> firePositions;
-    private final int columnCount;
-    private final int rowCount;
+    private Board board;
 
 
-    public FireUpdater(int step, int columnCount, int rowCount , Set<Position> firePositions) {
-        this.step = step;
-        this.columnCount = columnCount;
-        this.rowCount = rowCount;
-        this.firePositions = firePositions;
+    public FireUpdater(Board board) {
+        this.board = board;
     }
 
     @Override
     public List<Position> update() {
-        Neighbors neighborsPosition = new Neighbors(columnCount,rowCount);
+        Neighbors neighborsPosition = new Neighbors(board.columnCount(), board.rowCount());
 
         List<Position> modifiedPositions = new ArrayList<>();
-        if (step % 2 == 0) {
+        if (board.stepNumber() % 2 == 0) {
             List<Position> newFirePositions = new ArrayList<>();
-            for (Position fire : firePositions) {
+            for (Position fire : board.getFire().getPositions()) {
                 newFirePositions.addAll(neighborsPosition.neighbors(fire));
             }
-            firePositions.addAll(newFirePositions);
+            board.getFire().getPositions().addAll(newFirePositions);
             modifiedPositions.addAll(newFirePositions);
         }
         return modifiedPositions;
