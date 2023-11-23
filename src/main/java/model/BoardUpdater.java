@@ -14,9 +14,9 @@ public  class BoardUpdater implements Updater {
 
     @Override
     public List<Position> update() {
-        Updater updater = new FirefighterUpdater(board.getFirefighter(), board.getFire(), board.columnCount(), board.rowCount());
+        Updater updater = new FirefighterUpdater(board);
         List<Position> modifiedPositions = updater.update();
-        updater = new FireUpdater(board.stepNumber(), board.columnCount(), board.rowCount(), board.getFire().getPositions());
+        updater = new FireUpdater(board);
         modifiedPositions.addAll(updater.update());
         board.setStep(board.stepNumber()+1);
         return modifiedPositions;    }
