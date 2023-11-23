@@ -3,7 +3,7 @@ package model;
 import util.Position;
 import java.util.List;
 
-public class Cloud extends AbstractFirefighter implements  Elements<List<Position>> {
+public class Cloud extends FireExtinguisher implements  Elements<List<Position>> {
     public Cloud(int initialCloudCount) {
         super(initialCloudCount);
     }

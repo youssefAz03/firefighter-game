@@ -1,10 +1,6 @@
 package model;
 
-import util.Position;
-
-import java.util.Set;
-
-public class CloudUpdater extends AbstractFirefighterUpdater implements Updater {
+public class CloudUpdater extends FireExtinguisherUpdater implements Updater {
     public CloudUpdater(Board board) {
         super(board);
     }

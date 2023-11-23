@@ -5,12 +5,12 @@ import util.Position;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class AbstractFirefighter implements Elements<List<Position>> {
+public abstract class FireExtinguisher implements Elements<List<Position>> {
 
     private final int initialCount;
     private List<Position> Positions;
 
-    public AbstractFirefighter(int initialCount) {
+    public FireExtinguisher(int initialCount) {
         this.initialCount = initialCount;
         this.Positions = new ArrayList<>();
     }

@@ -2,7 +2,6 @@ package model;
 
 import util.Position;
 
-import java.util.List;
 import java.util.Set;
 
 /**
@@ -48,7 +47,7 @@ public interface Board {
      *
      * @return The element containing the positions of firefighters.
      */
-    AbstractFirefighter getFirefighter();
+    FireExtinguisher getFirefighter();
 
     /**
      * Get the element representing the positions of fire on the board.

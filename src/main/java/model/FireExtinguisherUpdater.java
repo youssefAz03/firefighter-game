@@ -4,10 +4,10 @@ import util.Position;
 
 import java.util.*;
 
-public abstract class AbstractFirefighterUpdater implements Updater{
+public abstract class FireExtinguisherUpdater implements Updater{
     private final Board board;
 
-    public AbstractFirefighterUpdater(Board board) {
+    public FireExtinguisherUpdater(Board board) {
         this.board = board;
     }
     @Override
