@@ -8,7 +8,7 @@ import java.util.*;
 public class FirefighterBoard implements Board {
 
     private final Elements<Set<Position>> fire;
-    private final Elements<List<Position>> firefighter;
+    private final AbstractFirefighter firefighter;
     private final int columnCount;
     private final int rowCount;
     private int step = 0;
@@ -49,7 +49,7 @@ public class FirefighterBoard implements Board {
     }
 
     @Override
-    public Elements<List<Position>> getFirefighter() {
+    public AbstractFirefighter getFirefighter() {
         return firefighter;
     }
 

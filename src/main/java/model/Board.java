@@ -48,7 +48,7 @@ public interface Board {
      *
      * @return The element containing the positions of firefighters.
      */
-    Elements<List<Position>> getFirefighter();
+    AbstractFirefighter getFirefighter();
 
     /**
      * Get the element representing the positions of fire on the board.
