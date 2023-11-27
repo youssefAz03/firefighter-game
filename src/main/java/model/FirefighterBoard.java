@@ -16,12 +16,12 @@ public class FirefighterBoard implements Board {
     private final RandomPositionsGenerator randomPositionsGenerator;
 
 
-    public FirefighterBoard(int columnCount, int rowCount, int initialFireCount, int initialFirefighterCount) {
+    public FirefighterBoard(int columnCount, int rowCount, int initialFireCount, int initialFirefighterCount,int initialCloudCount) {
         this.columnCount = columnCount;
         this.rowCount = rowCount;
         this.fire = new Fire(initialFireCount);
         this.firefighter = new Firefighter(initialFirefighterCount);
-        this.cloud = new Cloud(initialFirefighterCount);
+        this.cloud = new Cloud(initialCloudCount);
         this.randomPositionsGenerator = new RandomPositionsGenerator(this);
         initializeElements();
     }
