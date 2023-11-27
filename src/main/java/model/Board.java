@@ -2,6 +2,7 @@ package model;
 
 import util.Position;
 
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -48,6 +49,12 @@ public interface Board {
      * @return The element containing the positions of firefighters.
      */
     FireExtinguisher getFirefighter();
+    /**
+     * Retrieve the element containing the positions of clouds on the board.
+     *
+     * @return The element representing the positions of clouds.
+     */
+    Elements<List<Position>> getCloud();
 
     /**
      * Get the element representing the positions of fire on the board.
