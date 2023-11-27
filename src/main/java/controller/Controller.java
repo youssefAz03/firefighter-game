@@ -87,6 +87,9 @@ public class Controller {
     if(squareState.contains(ModelElement.FIREFIGHTER)){
       return ViewElement.FIREFIGHTER;
     }
+    if(squareState.contains(ModelElement.CLOUD)){
+      return ViewElement.CLOUD;
+    }
     if (squareState.contains(ModelElement.FIRE)){
       return ViewElement.FIRE;
     }
