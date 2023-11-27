@@ -10,30 +10,10 @@ public abstract class FireExtinguisherUpdater implements Updater{
     public FireExtinguisherUpdater(Board board) {
         this.board = board;
     }
-    @Override
-    public List<Position> update() {
-        Neighbors neighbors = new Neighbors(board.columnCount(), board.rowCount());
-        List<Position> modifiedPosition = new ArrayList<>();
-        List<Position> firefighterNewPositions = new ArrayList<>();
 
-        for (Position firefighterPosition : board.getFirefighter().getPositions()) {
-            Position newFirefighterPosition = neighborClosestToFire(firefighterPosition);
-            firefighterNewPositions.add(newFirefighterPosition);
-            extinguish(newFirefighterPosition);
-            modifiedPosition.add(firefighterPosition);
-            modifiedPosition.add(newFirefighterPosition);
-            List<Position> neighborFirePositions = neighbors.neighbors(newFirefighterPosition).stream()
-                    .filter(board.getFire().getPositions()::contains).toList();
-            for(Position firePosition : neighborFirePositions)
-                extinguish(firePosition);
-            modifiedPosition.addAll(neighborFirePositions);
-        }
-        board.getFirefighter().setPositions(firefighterNewPositions);
-        return modifiedPosition;
-    }
     public Position neighborClosestToFire(Position position) {
         Set<Position> seen = new HashSet<>();
-        Neighbors neighborsOfPosition = new Neighbors(board.columnCount(), board.rowCount());
+        Neighbors neighborsOfPosition = new Neighbors(board);
         HashMap<Position, Position> firstMove = new HashMap<>();
         Queue<Position> toVisit = new LinkedList<>(neighborsOfPosition.neighbors(position));
         for (Position initialMove : toVisit)
