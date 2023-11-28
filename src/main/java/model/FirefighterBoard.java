@@ -73,10 +73,6 @@ public class FirefighterBoard implements Board {
         return motorizedFirefighter;
     }
 
-    @Override
-    public Elements<List<Position>> getMountain() {
-        return mountain;
-    }
 
     @Override
     public FireExtinguisher getFirefighter() {
@@ -90,6 +86,11 @@ public class FirefighterBoard implements Board {
 
     public Elements<List<Position>> getRoad() {
         return road;
+    }
+
+    @Override
+    public Elements<List<Position>> getMountain() {
+        return mountain;
     }
 
     @Override

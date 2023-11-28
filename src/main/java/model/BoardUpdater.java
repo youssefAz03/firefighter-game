@@ -19,7 +19,6 @@ public  class BoardUpdater implements Updater {
         modifiedPositions.addAll(updater.update());
         updater = new MotorizedFirefighterUpdater(board);
         modifiedPositions.addAll(updater.update());
-        updater = new MountainUpdater(board);
         modifiedPositions.addAll(updater.update());
         updater = new FireUpdater(board);
         modifiedPositions.addAll(updater.update());

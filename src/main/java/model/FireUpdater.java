@@ -23,7 +23,7 @@ public class FireUpdater implements Updater{
             List<Position> newFirePositions = new ArrayList<>();
             for (Position fire : board.getFire().getPositions()) {
                 for(Position neighborsPositions : neighborsPosition.neighbors(fire , 1)) {
-                    if (!board.getRoad().getPositions().contains(neighborsPosition)) {
+                    if (!board.getRoad().getPositions().contains(neighborsPositions) && !board.getMountain().getPositions().equals(neighborsPositions)) {
                         newFirePositions.add(neighborsPositions);
                     }
                 }
@@ -31,7 +31,6 @@ public class FireUpdater implements Updater{
             board.getFire().getPositions().addAll(newFirePositions);
             modifiedPositions.addAll(newFirePositions);
         }
-        modifiedPositions.removeAll(board.getMountain().getPositions());
         return modifiedPositions;
     }
 }
