@@ -93,6 +93,9 @@ public class Controller {
     if(squareState.contains(ModelElement.MOTORIZEDFIREFIGHTER)){
       return ViewElement.MOTORIZEDFIREFIGHTER;
     }
+    if(squareState.contains(ModelElement.MOUNTAIN)){
+      return ViewElement.MOUNTAIN;
+    }
     if (squareState.contains(ModelElement.FIRE)){
       return ViewElement.FIRE;
     }

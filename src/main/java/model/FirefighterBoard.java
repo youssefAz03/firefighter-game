@@ -12,6 +12,7 @@ public class FirefighterBoard implements Board {
     private final Elements<List<Position>> cloud;
     private final Elements<List<Position>> road;
     private final FireExtinguisher motorizedFirefighter;
+    private final Elements<List<Position>> mountain;
     private final int columnCount;
     private final int rowCount;
     private int step = 0;
@@ -26,6 +27,7 @@ public class FirefighterBoard implements Board {
         this.firefighter = new Firefighter(initialFirefighterCount);
         this.cloud = new Cloud(initialCloudCount);
         this.motorizedFirefighter = new MotorizedFirefighter(initialCloudCount);
+        this.mountain = new Mountain(initialFirefighterCount);
         this.randomPositionsGenerator = new RandomPositionsGenerator(this);
         initializeElements();
     }
@@ -36,12 +38,15 @@ public class FirefighterBoard implements Board {
         cloud.setPositions(new ArrayList<>());
         road.setPositions(new ArrayList<>());
         motorizedFirefighter.setPositions(new ArrayList<>());
+        mountain.setPositions(new ArrayList<>());
         for (int index = 0; index < fire.getInitialCount(); index++)
             fire.getPositions().add(randomPositionsGenerator.randomPosition());
         for (int index = 0; index < firefighter.getInitialCount(); index++)
             firefighter.getPositions().add(randomPositionsGenerator.randomPosition());
         for (int index = 0; index < motorizedFirefighter.getInitialCount(); index++)
             motorizedFirefighter.getPositions().add(randomPositionsGenerator.randomPosition());
+        for (int index = 0; index < mountain.getInitialCount(); index++)
+            mountain.getPositions().add(randomPositionsGenerator.randomPosition());
         for (int index = 0; index < cloud.getInitialCount(); index++)
             cloud.getPositions().add(randomPositionsGenerator.randomPosition());
         for(int index = 0;index<road.getInitialCount();index++)
@@ -66,6 +71,11 @@ public class FirefighterBoard implements Board {
     @Override
     public FireExtinguisher getMotorizedFirefighter() {
         return motorizedFirefighter;
+    }
+
+    @Override
+    public Elements<List<Position>> getMountain() {
+        return mountain;
     }
 
     @Override
