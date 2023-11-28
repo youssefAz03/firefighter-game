@@ -22,6 +22,9 @@ public class StateManager implements State<List<ModelElement>>{
         for (Position cloudPosition : board.getCloud().getPositions())
             if (cloudPosition.equals(position))
                 result.add(ModelElement.CLOUD);
+        for (Position motorizedFirefighterPosition : board.getMotorizedFirefighter().getPositions())
+            if (motorizedFirefighterPosition.equals(position))
+                result.add(ModelElement.MOTORIZEDFIREFIGHTER);
         if (board.getFire().getPositions().contains(position))
             result.add(ModelElement.FIRE);
         return result;
@@ -33,13 +36,15 @@ public class StateManager implements State<List<ModelElement>>{
         for (; ; ) {
             if (!board.getFirefighter().getPositions().remove(position)) break;
             if (!board.getCloud().getPositions().remove(position)) break;
-
+            if (!board.getMotorizedFirefighter().getPositions().remove(position)) break;
         }
         for (ModelElement element : state) {
             switch (element) {
                 case FIRE -> board.getFire().getPositions().add(position);
                 case FIREFIGHTER -> board.getFirefighter().getPositions().add(position);
                 case CLOUD -> board.getCloud().getPositions().add(position);
+                case MOTORIZEDFIREFIGHTER -> board.getMotorizedFirefighter().getPositions().add(position);
+
             }
         }
     }

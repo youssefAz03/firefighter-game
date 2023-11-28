@@ -18,12 +18,12 @@ public class FirefighterUpdater extends FireExtinguisherUpdater implements Updat
         List<Position> firefighterNewPositions = new ArrayList<>();
 
         for (Position firefighterPosition : board.getFirefighter().getPositions()) {
-            Position newFirefighterPosition = neighborClosestToFire(firefighterPosition);
+            Position newFirefighterPosition = neighborClosestToFire(firefighterPosition,1);
             firefighterNewPositions.add(newFirefighterPosition);
             extinguish(newFirefighterPosition);
             modifiedPosition.add(firefighterPosition);
             modifiedPosition.add(newFirefighterPosition);
-            List<Position> neighborFirePositions = neighbors.neighbors(newFirefighterPosition).stream()
+            List<Position> neighborFirePositions = neighbors.neighbors(newFirefighterPosition,1).stream()
                     .filter(board.getFire().getPositions()::contains).toList();
             for(Position firePosition : neighborFirePositions)
                 extinguish(firePosition);

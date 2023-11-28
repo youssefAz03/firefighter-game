@@ -22,7 +22,7 @@ public class FireUpdater implements Updater{
         if (board.stepNumber() % 2 == 0) {
             List<Position> newFirePositions = new ArrayList<>();
             for (Position fire : board.getFire().getPositions()) {
-                newFirePositions.addAll(neighborsPosition.neighbors(fire));
+                newFirePositions.addAll(neighborsPosition.neighbors(fire,1));
             }
             board.getFire().getPositions().addAll(newFirePositions);
             modifiedPositions.addAll(newFirePositions);
