@@ -27,6 +27,7 @@ public class FireUpdater implements Updater{
             board.getFire().getPositions().addAll(newFirePositions);
             modifiedPositions.addAll(newFirePositions);
         }
+        modifiedPositions.removeAll(board.getMountain().getPositions());
         return modifiedPositions;
     }
 }
