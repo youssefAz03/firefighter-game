@@ -17,6 +17,8 @@ public  class BoardUpdater implements Updater {
         List<Position> modifiedPositions = updater.update();
         updater = new CloudUpdater(board);
         modifiedPositions.addAll(updater.update());
+        updater = new MotorizedFirefighterUpdater(board);
+        modifiedPositions.addAll(updater.update());
         updater = new FireUpdater(board);
         modifiedPositions.addAll(updater.update());
         board.setStep(board.stepNumber()+1);

@@ -4,9 +4,10 @@ import util.Position;
 
 import java.util.*;
 
-public class CloudUpdater implements Updater {
+public class CloudUpdater extends FireExtinguisherUpdater implements Updater {
     private final Board board;
     public CloudUpdater(Board board) {
+        super(board);
         this.board = board;
     }
 
@@ -23,7 +24,7 @@ public class CloudUpdater implements Updater {
             extinguish(newCloudPosition);
             modifiedPosition.add(cloudPosition);
             modifiedPosition.add(newCloudPosition);
-            List<Position> neighborFirePositions = neighbors.neighbors(newCloudPosition).stream()
+            List<Position> neighborFirePositions = neighbors.neighbors(newCloudPosition,1).stream()
                     .filter(board.getFire().getPositions()::contains).toList();
             for(Position firePosition : neighborFirePositions)
                 extinguish(firePosition);
@@ -31,8 +32,5 @@ public class CloudUpdater implements Updater {
         }
         board.getCloud().setPositions(cloudPositions);
         return modifiedPosition;
-    }
-    public void extinguish(Position position) {
-        board.getFire().getPositions().remove(position);
     }
 }

@@ -63,5 +63,6 @@ public interface Board {
      */
     Elements<Set<Position>> getFire();
 
+    FireExtinguisher getMotorizedFirefighter();
 }
 
