@@ -10,6 +10,7 @@ public class FirefighterBoard implements Board {
     private final Elements<Set<Position>> fire;
     private final FireExtinguisher firefighter;
     private final Elements<List<Position>> cloud;
+    private final Elements<List<Position>> road;
     private final FireExtinguisher motorizedFirefighter;
     private final int columnCount;
     private final int rowCount;
@@ -17,9 +18,10 @@ public class FirefighterBoard implements Board {
     private final RandomPositionsGenerator randomPositionsGenerator;
 
 
-    public FirefighterBoard(int columnCount, int rowCount, int initialFireCount, int initialFirefighterCount,int initialCloudCount) {
+    public FirefighterBoard(int columnCount, int rowCount, int initialFireCount, int initialFirefighterCount,int initialCloudCount , int initialRoadscount) {
         this.columnCount = columnCount;
         this.rowCount = rowCount;
+        this.road = new Road(initialRoadscount);
         this.fire = new Fire(initialFireCount);
         this.firefighter = new Firefighter(initialFirefighterCount);
         this.cloud = new Cloud(initialCloudCount);
@@ -32,6 +34,7 @@ public class FirefighterBoard implements Board {
         fire.setPositions(new HashSet<>());
         firefighter.setPositions(new ArrayList<>());
         cloud.setPositions(new ArrayList<>());
+        road.setPositions(new ArrayList<>());
         motorizedFirefighter.setPositions(new ArrayList<>());
         for (int index = 0; index < fire.getInitialCount(); index++)
             fire.getPositions().add(randomPositionsGenerator.randomPosition());
@@ -41,6 +44,8 @@ public class FirefighterBoard implements Board {
             motorizedFirefighter.getPositions().add(randomPositionsGenerator.randomPosition());
         for (int index = 0; index < cloud.getInitialCount(); index++)
             cloud.getPositions().add(randomPositionsGenerator.randomPosition());
+        for(int index = 0;index<road.getInitialCount();index++)
+            road.getPositions().add(randomPositionsGenerator.randomPosition());
     }
 
     @Override
@@ -71,6 +76,10 @@ public class FirefighterBoard implements Board {
     @Override
     public Elements<List<Position>> getCloud() {
         return cloud;
+    }
+
+    public Elements<List<Position>> getRoad() {
+        return road;
     }
 
     @Override

@@ -27,6 +27,8 @@ public class StateManager implements State<List<ModelElement>>{
                 result.add(ModelElement.MOTORIZEDFIREFIGHTER);
         if (board.getFire().getPositions().contains(position))
             result.add(ModelElement.FIRE);
+        if(board.getRoad().getPositions().contains(position))
+            result.add(ModelElement.ROAD);
         return result;
     }
 
@@ -37,6 +39,7 @@ public class StateManager implements State<List<ModelElement>>{
             if (!board.getFirefighter().getPositions().remove(position)) break;
             if (!board.getCloud().getPositions().remove(position)) break;
             if (!board.getMotorizedFirefighter().getPositions().remove(position)) break;
+            if (!board.getRoad().getPositions().remove(position)) break;
         }
         for (ModelElement element : state) {
             switch (element) {
@@ -44,6 +47,7 @@ public class StateManager implements State<List<ModelElement>>{
                 case FIREFIGHTER -> board.getFirefighter().getPositions().add(position);
                 case CLOUD -> board.getCloud().getPositions().add(position);
                 case MOTORIZEDFIREFIGHTER -> board.getMotorizedFirefighter().getPositions().add(position);
+                case ROAD -> board.getRoad().getPositions().add(position);
 
             }
         }

@@ -96,6 +96,9 @@ public class Controller {
     if (squareState.contains(ModelElement.FIRE)){
       return ViewElement.FIRE;
     }
+    if (squareState.contains(ModelElement.ROAD)){
+      return ViewElement.ROAD;
+    }
     return ViewElement.EMPTY;
   }
 
@@ -132,9 +135,9 @@ public class Controller {
   }
 
   public void initialize(int squareWidth, int squareHeight, int columnCount,
-                                int rowCount, int initialFireCount, int initialFirefighterCount,int initialCloudCount) {
+                                int rowCount, int initialFireCount, int initialFirefighterCount,int initialCloudCount ,int initialRoadsCount) {
     grid.setDimensions(columnCount, rowCount, squareWidth, squareHeight);
-    this.setModel(new FirefighterBoard(columnCount, rowCount, initialFireCount, initialFirefighterCount,initialCloudCount));
+    this.setModel(new FirefighterBoard(columnCount, rowCount, initialFireCount, initialFirefighterCount,initialCloudCount , initialRoadsCount));
     repaintGrid();
   }
 

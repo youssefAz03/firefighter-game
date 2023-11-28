@@ -64,5 +64,7 @@ public interface Board {
     Elements<Set<Position>> getFire();
 
     FireExtinguisher getMotorizedFirefighter();
+
+    Elements<List<Position>> getRoad();
 }
 
