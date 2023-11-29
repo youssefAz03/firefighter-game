@@ -5,7 +5,7 @@ import util.Position;
 import java.util.*;
 
 
-public class FirefighterBoard implements Board {
+public class FirefightingBoard implements Board {
 
     private final Elements<Set<Position>> fire;
     private final FireExtinguisher firefighter;
@@ -19,7 +19,7 @@ public class FirefighterBoard implements Board {
     private final RandomPositionsGenerator randomPositionsGenerator;
 
 
-    public FirefighterBoard(int columnCount, int rowCount, int initialFireCount, int initialFirefighterCount,int initialCloudCount , int initialRoadscount,int initialMotorizedFirefighterCount,int initialMountainCount) {
+    public FirefightingBoard(int columnCount, int rowCount, int initialFireCount, int initialFirefighterCount, int initialCloudCount , int initialRoadscount, int initialMotorizedFirefighterCount, int initialMountainCount) {
         this.columnCount = columnCount;
         this.rowCount = rowCount;
         this.road = new Road(initialRoadscount);

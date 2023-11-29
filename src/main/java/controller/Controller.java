@@ -54,7 +54,7 @@ public class Controller {
     pauseToggleButton.setSelected(true);
   }
 
-  private void setModel(FirefighterBoard firefighterBoard) {
+  private void setModel(FirefightingBoard firefighterBoard) {
     this.board = requireNonNull(firefighterBoard, "firefighter.model is null");
     this.state = new StateManager(board);
     this.boardUpdater = new BoardUpdater(board);
@@ -141,7 +141,7 @@ public class Controller {
                                 int rowCount, int initialFireCount, int initialFirefighterCount,int initialCloudCount ,int initialRoadsCount,
                                 int initialMotorizedFirefighterCount, int initialMountainCount) {
     grid.setDimensions(columnCount, rowCount, squareWidth, squareHeight);
-    this.setModel(new FirefighterBoard(columnCount, rowCount, initialFireCount, initialFirefighterCount,initialCloudCount , initialRoadsCount,initialMotorizedFirefighterCount,initialMountainCount));
+    this.setModel(new FirefightingBoard(columnCount, rowCount, initialFireCount, initialFirefighterCount,initialCloudCount , initialRoadsCount,initialMotorizedFirefighterCount,initialMountainCount));
     repaintGrid();
   }
 
