@@ -19,15 +19,15 @@ public class FirefighterBoard implements Board {
     private final RandomPositionsGenerator randomPositionsGenerator;
 
 
-    public FirefighterBoard(int columnCount, int rowCount, int initialFireCount, int initialFirefighterCount,int initialCloudCount , int initialRoadscount) {
+    public FirefighterBoard(int columnCount, int rowCount, int initialFireCount, int initialFirefighterCount,int initialCloudCount , int initialRoadscount,int initialMotorizedFirefighterCount,int initialMountainCount) {
         this.columnCount = columnCount;
         this.rowCount = rowCount;
         this.road = new Road(initialRoadscount);
         this.fire = new Fire(initialFireCount);
         this.firefighter = new Firefighter(initialFirefighterCount);
         this.cloud = new Cloud(initialCloudCount);
-        this.motorizedFirefighter = new MotorizedFirefighter(initialCloudCount);
-        this.mountain = new Mountain(initialFirefighterCount);
+        this.motorizedFirefighter = new MotorizedFirefighter(initialMotorizedFirefighterCount);
+        this.mountain = new Mountain(initialMountainCount);
         this.randomPositionsGenerator = new RandomPositionsGenerator(this);
         initializeElements();
     }
