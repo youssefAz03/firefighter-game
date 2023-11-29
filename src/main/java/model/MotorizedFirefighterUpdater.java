@@ -29,6 +29,7 @@ public class MotorizedFirefighterUpdater extends FireExtinguisherUpdater impleme
                 extinguish(firePosition);
             modifiedPosition.addAll(neighborFirePositions);
         }
+        this.restraintFireExtinguisher(modifiedPosition);
         board.getMotorizedFirefighter().setPositions(motorizedFirefighterNewPositions);
         return modifiedPosition;
     }

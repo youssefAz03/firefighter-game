@@ -29,6 +29,7 @@ public class FirefighterUpdater extends FireExtinguisherUpdater implements Updat
                 extinguish(firePosition);
             modifiedPosition.addAll(neighborFirePositions);
         }
+        this.restraintFireExtinguisher(modifiedPosition);
         board.getFirefighter().setPositions(firefighterNewPositions);
         return modifiedPosition;
     }

@@ -34,4 +34,9 @@ public abstract class FireExtinguisherUpdater implements Updater{
     public void extinguish(Position position) {
         board.getFire().getPositions().remove(position);
     }
+    public void restraintFireExtinguisher(List<Position> positions){
+        for (Position moutainPosition : board.getMountain().getPositions())
+            if (positions.contains(moutainPosition))
+                positions.remove(moutainPosition);
+    }
 }
