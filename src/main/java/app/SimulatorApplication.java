@@ -17,7 +17,7 @@ public class SimulatorApplication extends javafx.application.Application {
   private static final int COLUMN_COUNT = 20;
   private static final int BOX_WIDTH = 30;
   private static final int BOX_HEIGHT = 30;
-  public static final int INITIAL_FIRE_COUNT = 3;
+  public static final int INITIAL_FIRE_COUNT = 6;
   public static final int INITIAL_FIREFIGHTER_COUNT = 6;
   public static final int INITIAL_CLOUD_COUNT = 4;
   private static final int INITIAL_ROAD_COUNT = 5;

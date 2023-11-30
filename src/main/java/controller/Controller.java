@@ -70,6 +70,8 @@ public class Controller {
     }
     grid.repaint(updatedSquares);
     updateGenerationLabel(board.stepNumber());
+    if (board.getFire().getPositions().isEmpty())
+      pause();
   }
 
   private void repaintGrid(){
