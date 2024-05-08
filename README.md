@@ -48,5 +48,3 @@ The project contains several Java classes to manage the simulation's components,
 - Allow for multiplayer or cooperative gameplay.
 - Introduce weather conditions that affect the spread and extinguishing of fires.
 
-## License
-This project is licensed under the [Your License Name]. Please read the LICENSE file for more information.
